@@ -42,10 +42,9 @@ class TestAccountService(TestCase):
         """Runs once before test suite"""
 
     @classmethod
-    def setUpClass(cls):
+    def setUpClass_talisman(cls):
         """Run once before all tests"""
-    #{ other lines of code here ... }
-    talisman.force_https = False
+        talisman.force_https = False
 
     def setUp(self):
         """Runs before each test"""
@@ -189,7 +188,7 @@ class TestAccountService(TestCase):
         }
         for key, value in headers.items():
             self.assertEqual(response.headers.get(key), value)
-            
+
     def test_cors_security(self):
         """It should return a CORS header"""
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
